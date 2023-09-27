@@ -9,18 +9,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static java.awt.SystemColor.window;
 
 public class EstimateModule extends BasePage {
     private WebElement totalEstimatedCost;
-    @FindBy(xpath = "EmailYourEstimateModule")
-    private WebElement emailButton;
-    private String totalEstimatedCostText = "\n" +
-            "          Total Estimated Cost:\n" +
-            "          USD 6,341.26\n" +
-            "          per 1 month\n" +
-            "        ";
-    protected EstimateModule(WebDriver webDriver) {
+    private String totalEstimatedCostText;
+    public EstimateModule(WebDriver webDriver) {
         super(webDriver);
     }
 
@@ -30,13 +23,14 @@ public class EstimateModule extends BasePage {
                         "//*[@id=\"resultBlock\"]//h2/b")));
         return totalEstimatedCost.getText();
     }
-    public EmailYourEstimateModule sendToEmail() {
-        emailButton.click();
-        return new EmailYourEstimateModule(webDriver);
-    }
-    public GeneratorPage openNewBrowserWindow() {
-        webDriver.switchTo().newWindow(WindowType.TAB);
-        webDriver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"\t");
+    public GeneratorPage openNewTab() {
+        String originalWindowHandle = webDriver.getWindowHandle();
+        for (String windowHandle : webDriver.getWindowHandles()) {
+            if (!windowHandle.equals(originalWindowHandle)) {
+                webDriver.switchTo().window(windowHandle);
+                break;
+            }
+        }
         return new GeneratorPage(webDriver);
     }
 }

@@ -1,11 +1,18 @@
 package org.epam;
 
 
+import org.epam.pageobject.modules.EstimateModule;
+import org.epam.pageobject.pages.GeneratorPage;
 import org.epam.pageobject.pages.GoogleCloudPage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 /**
  * Unit test for simple App.
@@ -16,13 +23,13 @@ public class MainTest extends BaseTest {
     public void setUp() {
         setUpWebDriver();
     }
-    @AfterMethod
+  /*  @AfterMethod
     public void closeDriver() {
         quit();
-    }
-
+    } */
     @Test
     public void calculatorTest() {
+
         GoogleCloudPage googleCloudPage = new GoogleCloudPage(webDriver);
         String totalEstimatedCostText = googleCloudPage
                 .open()
@@ -31,12 +38,14 @@ public class MainTest extends BaseTest {
                                         .fillForm("4")
                                               .getTotalEstimatedCostText();
 
-        Assert.assertEquals(totalEstimatedCostText, "\n" +
-                "          Total Estimated Cost:\n" +
-                "          USD 6,341.26\n" +
-                "          per 1 month\n" +
-                "        ");
+        EstimateModule estimateModule = new EstimateModule(webDriver);
+        String totalEstimatedCostByEmailText = estimateModule
+                .openNewTab()
+                .openGeneratorPage().generateEmail()
+                .goToInBoxPage()
+                .checkTotalEstimatedMonthlyCost();
+        String numberOfEstimated = totalEstimatedCostText.replaceAll("[^\\d]+","");
+        Assert.assertEquals(totalEstimatedCostText, totalEstimatedCostByEmailText);
 
-    }
-
+}
 }
