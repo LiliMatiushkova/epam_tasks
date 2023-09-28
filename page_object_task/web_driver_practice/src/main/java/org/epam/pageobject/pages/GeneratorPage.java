@@ -71,7 +71,7 @@ public class GeneratorPage extends BasePage {
         webDriver.switchTo().defaultContent();
         JavascriptExecutor js = (JavascriptExecutor) webDriver;
         js.executeScript("window.scrollBy(0, 200);");
-        WebDriverWait webDriverWait = new WebDriverWait(webDriver,Duration.ofSeconds(10));
+//        WebDriverWait webDriverWait = new WebDriverWait(webDriver,Duration.ofSeconds(10));
         checkInboxButton.click();
         return new InBoxPage(webDriver);
     }

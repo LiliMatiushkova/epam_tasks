@@ -44,9 +44,15 @@ public class CalculatorPage extends BasePage {
     private WebElement addToEstimateButton;
     @FindBy(xpath = "//button[@id='Email Estimate']")
     private WebElement emailButton;
+
+    private EstimateModule estimateModule;
+
     public CalculatorPage(WebDriver webDriver) {
         super(webDriver);
+        estimateModule = new EstimateModule(webDriver);
     }
+
+
 
     public EstimateModule fillForm(String quantity) {
 
@@ -110,6 +116,7 @@ public class CalculatorPage extends BasePage {
         waitForElements(machineTypeList
                 .stream()
                 .filter(p -> p.getText().equals(name))
-                .findFirst().orElse(null)).click();
+                .findFirst().orElse(null))
+                .click();
     }
 }

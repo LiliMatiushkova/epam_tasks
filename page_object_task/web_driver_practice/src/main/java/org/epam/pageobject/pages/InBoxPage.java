@@ -11,9 +11,12 @@ import java.time.Duration;
 
 public class InBoxPage extends BasePage {
     private WebElement estimatedCostValue;
+
+
     protected InBoxPage(WebDriver webDriver) {
         super(webDriver);
     }
+
     public String checkTotalEstimatedMonthlyCost() {
         webDriver.navigate().refresh();
         WebElement iFrame = new WebDriverWait(webDriver, Duration.ofSeconds(20))
