@@ -1,8 +1,6 @@
 package org.epam.pageobject.pages;
 
 import org.epam.pageobject.BasePage;
-import org.epam.pageobject.modules.EmailYourEstimateModule;
-import org.epam.pageobject.modules.EstimateModule;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;

@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-
 public class EstimateModule extends BasePage {
     private WebElement totalEstimatedCost;
     private String totalEstimatedCostText;
@@ -20,7 +19,7 @@ public class EstimateModule extends BasePage {
     public String getTotalEstimatedCostText() {
         totalEstimatedCost = new WebDriverWait(webDriver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-                        "//*[@id=\"resultBlock\"]//h2/b")));
+                        "//*[@id=\"resultBlock\"]/md-card/md-toolbar/div/h2[2]")));
         return totalEstimatedCost.getText();
     }
     public GeneratorPage openNewTab() {
