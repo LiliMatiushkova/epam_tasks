@@ -64,9 +64,10 @@ public class CalculatorPage extends BasePage {
         List<WebElement> seriesList = webDriver.findElements(By.xpath("//div[@id=\"select_container_124\"]//md-content[@class=\"_md\"]/md-option"));
         waitForElements(seriesList.get(0)).click();
 
-        machineTypeField.click();
-        List<WebElement> machineTypeList = webDriver.findElements(By.xpath("//div[@id=\"select_container_126\"]//md-content[@class=\"_md\"]//md-optgroup[@label=\"standard\"]/md-option"));
-        waitForElements(machineTypeList.get(3)).click();
+//        machineTypeField.click();
+//        List<WebElement> machineTypeList = webDriver.findElements(By.xpath("//div[@id=\"select_container_126\"]//md-content[@class=\"_md\"]//md-optgroup[@label=\"standard\"]/md-option"));
+//        waitForElements(machineTypeList.get(3)).click();
+        fillMachineType("1 cpu linux");
 
         addGpusCheckBox.click();
 
@@ -101,5 +102,14 @@ public class CalculatorPage extends BasePage {
         emailButton.click();
 
         return new EstimateModule(webDriver);
+    }
+
+    private void fillMachineType(String name){
+        machineTypeField.click();
+        List<WebElement> machineTypeList = webDriver.findElements(By.xpath("//div[@id=\"select_container_126\"]//md-content[@class=\"_md\"]//md-optgroup[@label=\"standard\"]/md-option"));
+        waitForElements(machineTypeList
+                .stream()
+                .filter(p -> p.getText().equals(name))
+                .findFirst().orElse(null)).click();
     }
 }
