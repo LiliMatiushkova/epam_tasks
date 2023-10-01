@@ -2,21 +2,12 @@ package org.epam;
 
 
 import org.epam.pageobject.modules.EstimateModule;
-import org.epam.pageobject.pages.GeneratorPage;
 import org.epam.pageobject.pages.GoogleCloudPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
-/**
- * Unit test for simple App.
- */
 public class MainTest extends BaseTest {
 
     @BeforeMethod
@@ -35,11 +26,21 @@ public class MainTest extends BaseTest {
                 .open()
                 .search("Google Cloud Platform Pricing Calculator")
                 .openCalculatorPage()
-                .fillForm("4")
+                .fillNumberOfInstances("4")
+                .fillSeries("n1")
+                .fillMachineType("CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8")
+                .clickGpusCheckBox()
+                .fillGpuType("NVIDIA_TESLA_V100")
+                .fillNumberOfGpusType("1")
+                .fillLocalSsd("2")
+                .fillDatacenterLocation("F", "europe-west3")
+                .fillCommittedUsageLocation("1")
+                .addToEstimate()
                 .getTotalEstimatedCostText();
 
         EstimateModule estimateModule = new EstimateModule(webDriver);
         String totalEstimatedCostByEmailText = estimateModule
+                .sendToEmail()
                 .openNewTab()
                 .openGeneratorPage().generateEmail()
                 .goToInBoxPage()

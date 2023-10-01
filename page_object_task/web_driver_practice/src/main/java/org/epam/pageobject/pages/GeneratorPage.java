@@ -12,16 +12,20 @@ public class GeneratorPage extends BasePage {
     @FindBy(xpath = "//div/h3[contains(text(), 'Random Email generator')]")
     private WebElement randomEmailGeneratorButton;
     private WebElement generatedText;
+    private WebElement iFrame;
+    private String myFrame = "myFrame";
     String generatedEmail;
-    @FindBy(xpath = "//*[@id=\"input_652\"]")
+    @FindBy(xpath = "//*[@id=\"input_615\"]")
     private WebElement emailField;
     @FindBy(xpath = "//button[contains(text(), 'Send Email')]")
     private WebElement sendEmailButton;
     @FindBy(xpath = "//div[@class=\"nw\"]/button[2]")
     private WebElement checkInboxButton;
+
     public GeneratorPage(WebDriver webDriver) {
         super(webDriver);
     }
+
     public GeneratorPage openGeneratorPage() {
         webDriver.switchTo().newWindow(WindowType.TAB);
         webDriver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL + "\t");
@@ -42,22 +46,16 @@ public class GeneratorPage extends BasePage {
         randomEmailGeneratorButton.click();
         webDriver.navigate().back();
         randomEmailGeneratorButton.click();
-
         copyGeneratedEmail();
-
         changeTab();
-
         webDriver.switchTo().frame(0);
-        WebElement iFrame = new WebDriverWait(webDriver, Duration.ofSeconds(20))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"myFrame\"]")));
-        webDriver.switchTo().frame("myFrame");
+                iFrame = new WebDriverWait(webDriver, Duration.ofSeconds(20))
+                        .until(ExpectedConditions.visibilityOfElementLocated(By.id(myFrame)));
+                webDriver.switchTo().frame(myFrame);
         emailField.click();
         emailField.sendKeys(generatedEmail);
         sendEmailButton.click();
-
         changeTab();
-
-
         return new GeneratorPage(webDriver);
     }
     public String copyGeneratedEmail(){
@@ -66,7 +64,6 @@ public class GeneratorPage extends BasePage {
         generatedEmail = generatedText.getText();
         return generatedEmail;
     }
-
     public InBoxPage goToInBoxPage() {
         webDriver.switchTo().defaultContent();
         JavascriptExecutor js = (JavascriptExecutor) webDriver;

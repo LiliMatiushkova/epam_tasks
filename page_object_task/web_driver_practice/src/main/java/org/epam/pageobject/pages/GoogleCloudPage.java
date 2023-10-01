@@ -18,7 +18,6 @@ public class GoogleCloudPage extends BasePage {
         webDriver.get("https://cloud.google.com/");
         return this;
     }
-
     public SearchResultsPage search(String searchData){
         this.searchField.sendKeys(searchData);
         searchField.sendKeys(Keys.ENTER);

@@ -11,7 +11,6 @@ public class BaseTest {
     protected void setUpWebDriver() {
         webDriver.manage().window().maximize();
     }
-
     protected void quit() {
         webDriver.quit();
     }

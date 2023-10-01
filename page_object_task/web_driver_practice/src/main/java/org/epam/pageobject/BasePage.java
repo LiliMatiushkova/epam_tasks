@@ -16,7 +16,7 @@ public abstract class BasePage {
         PageFactory.initElements(webDriver, this);
     }
     public WebElement waitForElements(WebElement element){
-        new WebDriverWait(webDriver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(element));
+        new WebDriverWait(webDriver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(element));
         return element;
     }
 }
