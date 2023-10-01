@@ -35,7 +35,16 @@ public class MainTest extends BaseTest {
                 .open()
                 .search("Google Cloud Platform Pricing Calculator")
                 .openCalculatorPage()
-                .fillForm("4")
+                .fillNumberOfInstances("4")
+                .fillSeries("N1")
+                .fillMachineType("n1-standard-8 (vCPUs: 8, RAM: 30GB)")
+                .clickGpusCheckBox()
+                .fillGpuType("NVIDIA Tesla V100")
+                .fillNumberOfGpusType("1")
+                .fillLocalSsd("2x375 Gb")
+                .fillDatacenterLocation("F", "Frankfurt (europe-west3)")
+                .fillCommittedUsageLocation("1 Year")
+                .addToEstimate()
                 .getTotalEstimatedCostText();
 
         EstimateModule estimateModule = new EstimateModule(webDriver);

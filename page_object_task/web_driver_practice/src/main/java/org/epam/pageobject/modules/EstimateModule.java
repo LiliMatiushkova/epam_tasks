@@ -12,10 +12,14 @@ import java.time.Duration;
 public class EstimateModule extends BasePage {
     private WebElement totalEstimatedCost;
     private String totalEstimatedCostText;
+    @FindBy(xpath = "//button[@id='Email Estimate']")
+    private WebElement emailButton;
     public EstimateModule(WebDriver webDriver) {
         super(webDriver);
     }
-
+    public void sendToEmail() {
+        emailButton.click();
+    }
     public String getTotalEstimatedCostText() {
         totalEstimatedCost = new WebDriverWait(webDriver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
