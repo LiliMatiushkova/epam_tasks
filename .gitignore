@@ -83,4 +83,5 @@ nb-configuration.xml
 ## OS X
 ##############################
 .DS_Store
-.page_object_task/target
+.target
+.allure
