@@ -1,6 +1,6 @@
 .idea
 target
-
+*.iml
 ##############################
 ## Java
 ##############################
@@ -88,3 +88,5 @@ nb-configuration.xml
 .DS_Store
 .target
 .allure
+/.idea/
+!/.idea/
