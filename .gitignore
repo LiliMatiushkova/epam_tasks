@@ -84,4 +84,5 @@ nb-configuration.xml
 ##############################
 .DS_Store
 .target
+.idea
 .allure
