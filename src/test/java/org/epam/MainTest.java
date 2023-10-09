@@ -33,7 +33,7 @@ public class MainTest extends BaseTest {
                 .fillGpuType("NVIDIA_TESLA_V100")
                 .fillNumberOfGpusType("1")
                 .fillLocalSsd("2")
-                .fillDatacenterLocation("F", "europe-west3")
+                .fillDatacenterLocation("europe-west3")
                 .fillCommittedUsageLocation("1")
                 .addToEstimate()
                 .getTotalEstimatedCostText();
