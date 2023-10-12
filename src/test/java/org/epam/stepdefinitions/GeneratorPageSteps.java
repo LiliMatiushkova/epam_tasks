@@ -14,7 +14,7 @@ public class GeneratorPageSteps {
     public void userGenerateRandomEmail(String pageName) {
         ((GeneratorPage) PAGES_STORAGE.get(pageName)).generateEmail();
     }
-    @And("And User navigate to the {string} from the {string}")
+    @And("User navigate to the {string} from the {string}")
     public void userNavigateToInBoxPage(String pageName, String pageNameExist) {
         PAGES_STORAGE.put(pageName, ((GeneratorPage) PAGES_STORAGE.get(pageNameExist)).goToInBoxPage());
     }

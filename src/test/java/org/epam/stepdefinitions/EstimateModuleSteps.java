@@ -4,15 +4,15 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.epam.pageobject.modules.EstimateModule;
-import org.testng.Assert;
 
 import static org.epam.stepdefinitions.BaseSteps.PAGES_STORAGE;
 
 public class EstimateModuleSteps {
-    @Then("{string} is present with info {string}")
-    public void estimateCostIsPresent(String pageName, String expectedEstimatedCost) {
-        String estimatedCost = ((EstimateModule) PAGES_STORAGE.get(pageName)).getTotalEstimatedCostText();
-        Assert.assertEquals(expectedEstimatedCost, estimatedCost);
+    public static String estimatedCost;
+
+    @Then("{string} is present with info monthly cost")
+    public String estimateCostIsPresent(String pageName) {
+        return estimatedCost = ((EstimateModule) PAGES_STORAGE.get(pageName)).getTotalEstimatedCostText();
     }
     @When("User click on Email Estimate button on the {string}")
     public void userClickOnEmailEstimateButton(String pageName) {

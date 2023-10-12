@@ -8,7 +8,7 @@ import static org.epam.stepdefinitions.BaseSteps.PAGES_STORAGE;
 import static org.epam.stepdefinitions.BaseSteps.webDriver;
 
 public class GoogleCloudPageSteps {
-    @Given("^User is on \"([^\"]*)\"$")
+    @Given("User is on {string}")
     public void userIsOnGoogleCloudPage(String pageName) {
         GoogleCloudPage googleCloudPage = new GoogleCloudPage(webDriver);
         PAGES_STORAGE.put(pageName, googleCloudPage);

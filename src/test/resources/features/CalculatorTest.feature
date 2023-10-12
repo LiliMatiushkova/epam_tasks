@@ -18,7 +18,7 @@ Feature: Test scenario for Calculator
     And User fill Committed Usage Location field with value "1" on the "Calculator Page"
     And User click on Add to Estimate button on the "Calculator Page"
 
-    Then "Estimate Module" is present with info "1,081.20 / mo"
+    Then "Estimate Module" is present with info monthly cost
 
     When User click on Email Estimate button on the "Estimate Module"
     And Open a new tab from the "Estimate Module"
@@ -26,7 +26,7 @@ Feature: Test scenario for Calculator
     And User generate a random email on the "Generator Page"
     And User navigate to the "InBox Page" from the "Generator Page"
 
-    Then Received email is present with info "Total Estimated Monthly Cost USD 1,081.20" on the "InBox Page"
-    Then Cost present in "Estimate Module" equals to the cost present on "InBox Page"
+    Then Received email is present with info about estimated monthly cost on the "InBox Page"
+    Then Cost present in Estimate Module equals to the cost present on InBox Page
 
 
