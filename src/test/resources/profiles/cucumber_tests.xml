@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Cucumber Tests">
+    <test name="Google calculator test">
+        <classes>
+            <class name="org.epam.CucumberRunner"/>
+        </classes>
+    </test>
+</suite>
